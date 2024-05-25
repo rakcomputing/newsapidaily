@@ -1,0 +1,65 @@
+.post-card {
+    
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    height: 400px;
+    border-bottom: 2px solid #07e74a;
+}
+
+.post-card:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.post-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 16px;
+    height: 200px;
+}
+
+.post-card h3 {
+    margin: 0 0 8px;
+    font-size: 1.2em;
+    color: #333;
+}
+
+.post-card p {
+    margin: 0 0 8px;
+    font-size: 1em;
+    color: #666;
+}
+
+.post-card small {
+    display: block;
+    font-size: 0.8em;
+    color: #999;
+    text-align: right;
+}
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+
+.post-avatar img {
+    margin-right: 8px;
+}
+.post-user p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.card-likecommat{
+  flex: 1;
+ 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

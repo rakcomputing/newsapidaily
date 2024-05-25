@@ -1,34 +1,41 @@
 import { Outlet, useNavigate } from "react-router-dom";
-import React from "react";
-
-import { Breadcrumb, Layout, Menu, theme } from "antd";
+import { React, useState } from "react";
+import { Breadcrumb, Input, Layout, Menu, theme } from "antd";
 import { Label } from "semantic-ui-react";
+import { IoHomeOutline } from "react-icons/io5";
+import { FaSquareShareNodes } from "react-icons/fa6";
 
 const { Header, Content, Footer } = Layout;
 
 const items = [
   {
     key: "1",
-    Label: "Home",
+    label: "Home",
+    icon: <IoHomeOutline />,
   },
   {
-    key: "2",
-    Label: "All Taks",
+    key: "3",
+    label: "Share",
+    icon: <FaSquareShareNodes />,
   },
 ];
 
 const LayoutPage = () => {
   const routeNavigation = useNavigate();
+  const [searchTerm, setSearchTerm] = useState("");
+
   const onLinkPage = (routes) => {
     routeNavigation(routes);
   };
+
   const onClickMenu = (e) => {
-    if (e.key == 1) {
+    if (e.key === "1") {
       onLinkPage("/home");
-    } else if (e.key == 2) {
-      onLinkPage("/alltasks");
+    } else if (e.key === "3") {
+      onLinkPage("/share");
     }
   };
+
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
@@ -37,6 +44,7 @@ const LayoutPage = () => {
     <Layout>
       <Header
         style={{
+          background: "#fff",
           position: "sticky",
           top: 0,
           zIndex: 1,
@@ -48,32 +56,31 @@ const LayoutPage = () => {
         <div className="demo-logo" />
         <Menu
           onClick={onClickMenu}
-          theme="dark"
           mode="horizontal"
           defaultSelectedKeys={["2"]}
-          items={items.map((item) => ({
-            ...item,
-            label: (
-              <Label basic color="blue" size="tiny">
-                {item.Label}
-              </Label>
-            ),
-          }))}
-          style={{ flex: 1, minWidth: 0 }}
+          items={items}
+          style={{ flex: 1, minWidth: 0, fontWeight: "bold" }}
+        />
+        <Input
+          type="text"
+          placeholder="Search..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          style={{ width: 200 }}
         />
       </Header>
-      <Content style={{ padding: "0 48px" }}>
+      <Content style={{ padding: "0 20px" }}>
         <div
           style={{
             height: "auto",
-            padding: 24,
+            padding: 10,
             minHeight: 380,
             marginTop: 10,
             background: colorBgContainer,
             borderRadius: borderRadiusLG,
           }}
         >
-          <Outlet />
+          <Outlet context={{ searchTerm }} />
         </div>
       </Content>
       <Footer style={{ textAlign: "center" }}>
